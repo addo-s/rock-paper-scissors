@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Rock Paper Scissors</title>
+</head>
+<body>
+<script>
+
+//function that randomly selects a result from 
+//rock-paper-scissors
+
+const variants = [
+    "rock",
+    "paper",
+    "scissors"
+];
+
+function computerPlay(randomVariant){
+    return randomVariant = variants[Math.floor(Math.random()*variants.length)];        
+} 
+
+//function to ask user for player selection
+function playerPlay() {
+    let player = prompt("Rock, Paper or Scissors? Please enter a selection");
+    return playerResult = player.toLowerCase();
+}
+
+//function that compares the two selections and returns string 
+//that declares the winner
+ 
+function playRound(computerSelection, playerSelection) {
+    if (computerSelection === "rock" && playerSelection === "paper") {
+        alert('You WIN! Paper beats Rock');
+    } else if (computerSelection === "paper" && playerSelection === "scissors") {
+        alert('You WIN! Scissors beats Paper');
+    } else if (computerSelection === "scissors" && playerSelection === "rock") {
+        alert('You WIN! Rock beats Scissors');
+    } else if (computerSelection === "rock" && playerSelection === "scissors") {
+        alert('You LOOSE! Rock beats Scissors');
+    } else if (computerSelection === "paper" && playerSelection === "rock") {
+        alert('You LOOSE! Paper beats Rock');
+    } else if (computerSelection === "scissors" && playerSelection === "paper") {
+        alert('You LOOSE! Scissors beats Paper');
+    } else if (computerSelection === playerSelection) {
+        alert('Draw')
+    } else {
+        alert('Invalid entry');
+    }
+}
+
+const playerSelection = playerPlay();
+const computerSelection = computerPlay();
+
+console.log(playRound(computerSelection, playerSelection));
+
+//new function game() that loops 5 times over the playRound function
+//keep score and reports winner or looser at the end
+
+
+</script>
+
+</body>
+</html>
