@@ -19,15 +19,18 @@ function computerPlay(randomVariant){
     return randomVariant = variants[Math.floor(Math.random()*variants.length)];        
 } 
 
-//function to ask user for player selection
+//function to ask user for player selection and returns lowercase result
 function playerPlay() {
     let player = prompt("Rock, Paper or Scissors? Please enter a selection");
     return playerResult = player.toLowerCase();
 }
 
 //function that compares the two selections and returns string 
-//that declares the winner
- 
+//that declares the outcome of the game
+
+const playerSelection = playerPlay();
+const computerSelection = computerPlay();
+
 function playRound(computerSelection, playerSelection) {
     if (computerSelection === "rock" && playerSelection === "paper") {
         alert('You WIN! Paper beats Rock');
@@ -46,15 +49,18 @@ function playRound(computerSelection, playerSelection) {
     } else {
         alert('Invalid entry');
     }
+
+    
 }
 
-const playerSelection = playerPlay();
-const computerSelection = computerPlay();
+
+
 
 console.log(playRound(computerSelection, playerSelection));
 
 //new function game() that loops 5 times over the playRound function
 //keep score and reports winner or looser at the end
+
 
 
 </script>
