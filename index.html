@@ -4,66 +4,73 @@
 <title>Rock Paper Scissors</title>
 </head>
 <body>
+<div>
+    <button class="button" value="rock" style="padding: 1px;">Rock</button>
+    <button class="button" value="paper" style="padding: 1px;">Paper</button>
+    <button class="button" value="scissors" style="padding: 1px;">Scissors</button>
+</div>
+<div id="result"></div>
+</body>
 <script>
+let playerScore = 0;
+let computerScore = 0;
+let gameCount = 0;
 
-//function that randomly selects a result from 
-//rock-paper-scissors
+const btns = document.querySelectorAll('button');
 
-const variants = [
+function computerPlay(){
+    let variants = [
     "rock",
     "paper",
     "scissors"
-];
-
-function computerPlay(randomVariant){
-    return randomVariant = variants[Math.floor(Math.random()*variants.length)];        
+    ];
+    return variants[Math.floor(Math.random()*variants.length)];        
 } 
 
-//function to ask user for player selection and returns lowercase result
-function playerPlay() {
-    let player = prompt("Rock, Paper or Scissors? Please enter a selection");
-    return playerResult = player.toLowerCase();
+
+
+function playRound(playerSelection) {    
+    let computerSelection = computerPlay();
+    let result = "";
+
+    if ((computerSelection === "rock" && playerSelection === "paper") ||
+    (computerSelection === "paper" && playerSelection === "scissors") ||
+    (computerSelection === "scissors" && playerSelection === "rock")) {
+        
+        playerScore += 1; 
+        gameCount += 1;
+        result = `You WIN!. Player score: ${playerScore}. Computer score: ${computerScore}`;
+        
+    } 
+    else if (computerSelection === playerSelection) {
+        gameCount += 1;
+        result = `Draw. Player score: ${playerScore}. Computer score: ${computerScore}`;
+    }
+    else  {
+        gameCount += 1;
+        computerScore += 1;
+        result = `You LOOSE!. Player score: ${playerScore}. Computer score: ${computerScore}`;       
+        
+    }  
+
+    if (gameCount === 5) {
+        result = `Final Score: Player score: ${playerScore}. Computer score: ${computerScore}`;
+        document.querySelectorAll('button').forEach(elem => {
+            elem.disabled = true;
+        });
+    }
+    document.getElementById('result').textContent = result;    
 }
 
-//function that compares the two selections and returns string 
-//that declares the outcome of the game
+btns.forEach((button) => {
+    button.addEventListener('click', () => {
+        playRound(button.value)
+    });
+});
 
-const playerSelection = playerPlay();
-const computerSelection = computerPlay();
-
-function playRound(computerSelection, playerSelection) {
-    if (computerSelection === "rock" && playerSelection === "paper") {
-        alert('You WIN! Paper beats Rock');
-    } else if (computerSelection === "paper" && playerSelection === "scissors") {
-        alert('You WIN! Scissors beats Paper');
-    } else if (computerSelection === "scissors" && playerSelection === "rock") {
-        alert('You WIN! Rock beats Scissors');
-    } else if (computerSelection === "rock" && playerSelection === "scissors") {
-        alert('You LOOSE! Rock beats Scissors');
-    } else if (computerSelection === "paper" && playerSelection === "rock") {
-        alert('You LOOSE! Paper beats Rock');
-    } else if (computerSelection === "scissors" && playerSelection === "paper") {
-        alert('You LOOSE! Scissors beats Paper');
-    } else if (computerSelection === playerSelection) {
-        alert('Draw')
-    } else {
-        alert('Invalid entry');
-    }
 
     
-}
-
-
-
-
-console.log(playRound(computerSelection, playerSelection));
-
-//new function game() that loops 5 times over the playRound function
-//keep score and reports winner or looser at the end
-
-
 
 </script>
 
-</body>
 </html>
